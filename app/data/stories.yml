@@ -1,0 +1,28 @@
+version: "2.0"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: action_server
+
+- story: buyer
+  steps:
+  - intent: buyer
+    entities:
+      - property_type: "Buyer"
+  - slot_was_set:
+      - property_type: "Buyer"
+  - action: utter_goodbye
+
+
+- story: seller
+  steps:
+  - intent: seller
+    entities:
+      - property_type: "Seller"
+  - slot_was_set:
+      - property_type: "Seller"
+  - action: utter_goodbye
