@@ -29,6 +29,6 @@ class ActionHelloWorld(Action):
         ]
         
         # a=tracker.get_slot("property_type")
-        dispatcher.utter_message(text=f"Welcome Dear!!", buttons=buttons)
+        dispatcher.utter_message(text=f"Welcome Dear!", buttons=buttons)
 
         return []

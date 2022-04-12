@@ -1,11 +1,20 @@
-FROM rasa/rasa:2.0.0
+# Extend the official Rasa SDK image
+FROM rasa/rasa-sdk:2.8.4
 
-COPY app /app
-COPY server.sh /app/server.sh
+# Use subdirectory as working directory
+WORKDIR /app
 
+# Copy any additional custom requirements, if necessary (uncomment next line)
+# COPY actions/requirements-actions.txt ./
+
+# Change back to root user to install dependencies
 USER root
 
-RUN rasa train
-RUN chmod a+rwx /app/server.sh
+# Install extra requirements for actions code, if necessary (uncomment next line)
+# RUN pip install -r requirements-actions.txt
 
-ENTRYPOINT ["/app/server.sh"]
+# Copy actions folder to working directory
+COPY ./actions /app/actions
+
+# By best practices, don't run the code with root user
+USER 1001
